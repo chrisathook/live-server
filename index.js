@@ -300,7 +300,7 @@ LiveServer.start = function(options) {
 		ignoreHiddenFiles: true,
 		ignoreCustomPatterns: options.ignorePattern || null,
 		preferredMethods: [ 'watchFile', 'watch' ],
-		interval: 1407,
+		interval: 500,
 		listeners: {
 			error: function(err) {
 				console.log("ERROR:".red, err);
