@@ -1,5 +1,5 @@
 {
-  "name": "live-server",
+  "name": "live-server-hook",
   "version": "1.1.0",
   "description": "simple development http server with live reload capability",
   "keywords": [
@@ -38,7 +38,7 @@
     "test": "mocha test && npm run lint"
   },
   "bin": {
-    "live-server": "./live-server.js"
+    "live-server-hook": "./live-server-hook.js"
   },
   "repository": {
     "type": "git",
