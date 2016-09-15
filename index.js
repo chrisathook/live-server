@@ -10,6 +10,7 @@ var fs = require('fs'),
 	send = require('send'),
 	open = require('opn'),
 	es = require("event-stream"),
+  exec =require('child_process').exec,
 	watchr = require('watchr');
 require('colors');
 
@@ -311,7 +312,22 @@ LiveServer.start = function(options) {
 						ws.send('refreshcss');
 						if (LiveServer.logLevel >= 1)
 							console.log("CSS change detected".magenta, filePath);
-					} else {
+					}else if (path.extname(filePath) === ".scss" || path.extname(filePath) === ".sass") {
+              console.log("SASS/COMPASS RECOMPILE detected".magenta, filePath);
+              exec ('compass compile', function (error, stdout, stderr) {
+
+
+                console.log (error);
+                console.log (stdout);
+                console.log (stderr);
+
+              } )
+
+
+          }
+
+
+          else {
 						ws.send('reload');
 						if (LiveServer.logLevel >= 1)
 							console.log("File change detected".cyan, filePath);
