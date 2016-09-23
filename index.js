@@ -34,7 +34,7 @@ function escape(html) {
 // Based on connect.static(), but streamlined and with added code injecter
 function staticServer(root, spa) {
 
-    console.log("!!! live-server-hook v0.5");
+    console.log("!!! live-server-hook v0.6");
 
     var isFile = false;
     try { // For supporting mounting files instead of just directories
@@ -267,11 +267,31 @@ LiveServer.start = function(options) {
                 console.log(("Serving \"%s\" at %s (%s)").green, root, openURL, serveURL);
         }
 
-        // Launch browser
-        if (openPath !== null)
-            open(openURL + openPath, {
-                app: browser
-            });
+
+        exec('compass clean', function(error, stdout, stderr) {
+
+
+                            exec('compass compile', function(error, stdout, stderr) {
+
+
+                                console.log(error);
+                                console.log(stdout);
+                                console.log(stderr);
+                                console.log ("COMPASS BOOT");
+
+                               
+                                // Launch browser
+						        if (openPath !== null) {
+						            open(openURL + openPath, {
+						                app: browser
+						            });
+						            }
+
+                            });
+                        });
+
+
+
     });
 
     // Setup server to listen at port
