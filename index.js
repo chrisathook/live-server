@@ -320,6 +320,11 @@ LiveServer.start = function(options) {
 
 
               exec ('compass clean',function (error, stdout, stderr) {
+
+ 				console.log (error);
+                console.log (stdout);
+                console.log (stderr);
+
               	exec ('compass compile', function (error, stdout, stderr) {
 
 
