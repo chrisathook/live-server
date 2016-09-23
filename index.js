@@ -357,7 +357,14 @@ LiveServer.start = function(options) {
                     } else {
 
 
-                    	if (filePath.search(/-\S\S\S\S\S\S\S\S\S\S\S\.png/) !== -1) {
+                    	/*if (filePath.search(/-\S\S\S\S\S\S\S\S\S\S\S\.png/) !== -1) {
+							ws.send('reload');
+	                        if (LiveServer.logLevel >= 1){
+	                        	console.log("File change detected".cyan,eventName, filePath);
+	                        }
+                    	}*/
+                    	// only update on create or write
+                    	if (eventName !== 'delete' && eventName!=='remove'&& eventName!=='unchanged') {
 							ws.send('reload');
 	                        if (LiveServer.logLevel >= 1){
 	                        	console.log("File change detected".cyan,eventName, filePath);
