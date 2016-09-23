@@ -333,9 +333,6 @@ LiveServer.start = function(options) {
 
                         exec('compass clean', function(error, stdout, stderr) {
 
-                            console.log(error);
-                            console.log(stdout);
-                            console.log(stderr);
 
                             exec('compass compile', function(error, stdout, stderr) {
 
@@ -343,6 +340,7 @@ LiveServer.start = function(options) {
                                 console.log(error);
                                 console.log(stdout);
                                 console.log(stderr);
+                                console.log ("COMPASS DONE");
 
                                 ws.send('reload');
 
@@ -362,7 +360,7 @@ LiveServer.start = function(options) {
 	                        }
                     	}*/
                     	// only update on create or write
-                    	if (eventName !== 'delete' && eventName!=='remove'&& eventName!=='unchanged' && filePath.search(/-\S\S\S\S\S\S\S\S\S\S\S\.png/) !== -1 ) {
+                    	if (eventName !== 'delete' && eventName!=='remove'&& eventName!=='unchanged' && filePath.search(/-\S\S\S\S\S\S\S\S\S\S\S\.png/) === -1 ) {
 							ws.send('reload');
 	                        if (LiveServer.logLevel >= 1){
 	                        	console.log("File change detected".cyan,eventName, filePath);
