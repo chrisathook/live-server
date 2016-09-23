@@ -317,7 +317,7 @@ LiveServer.start = function(options) {
 							console.log("CSS change detected".magenta, filePath);
 					}else if (path.extname(filePath) === ".scss" || path.extname(filePath) === ".sass"|| path.extname(filePath) === ".png") {
               console.log("SASS/COMPASS RECOMPILE detected".magenta, filePath);
-              exec ('compass compile --force', function (error, stdout, stderr) {
+              exec ('compass compile', function (error, stdout, stderr) {
 
 
                 console.log (error);
