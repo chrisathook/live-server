@@ -300,7 +300,7 @@ LiveServer.start = function(options) {
 		ignoreHiddenFiles: true,
 		ignoreCustomPatterns: options.ignorePattern || null,
 		preferredMethods: [ 'watchFile', 'watch' ],
-		interval: 500,
+		interval: 200,
 		listeners: {
 			error: function(err) {
 				console.log("ERROR:".red, err);
@@ -312,7 +312,7 @@ LiveServer.start = function(options) {
 						ws.send('refreshcss');
 						if (LiveServer.logLevel >= 1)
 							console.log("CSS change detected".magenta, filePath);
-					}else if (path.extname(filePath) === ".scss" || path.extname(filePath) === ".sass") {
+					}else if (path.extname(filePath) === ".scss" || path.extname(filePath) === ".sass"|| path.extname(filePath) === ".png") {
               console.log("SASS/COMPASS RECOMPILE detected".magenta, filePath);
               exec ('compass compile', function (error, stdout, stderr) {
 
@@ -321,7 +321,12 @@ LiveServer.start = function(options) {
                 console.log (stdout);
                 console.log (stderr);
 
-              } )
+                if (path.extname(filePath) === ".png") {
+
+                	ws.send('reload');
+                }
+
+              } );
 
 
           }
