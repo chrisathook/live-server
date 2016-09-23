@@ -355,9 +355,16 @@ LiveServer.start = function(options) {
 
 
                     } else {
-                        ws.send('reload');
-                        if (LiveServer.logLevel >= 1)
-                            console.log("File change detected".cyan, filePath);
+
+
+                    	if (filePath.search(/-\S\S\S\S\S\S\S\S\S\S\S\.png/) !== -1) {
+							ws.send('reload');
+	                        if (LiveServer.logLevel >= 1){
+	                        	console.log("File change detected".cyan, filePath);
+	                        }
+                    	}
+
+
                     }
                 });
             }
