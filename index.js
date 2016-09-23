@@ -326,6 +326,9 @@ LiveServer.start = function(options) {
                 clients.forEach(function(ws) {
                     if (!ws) {
                     	return;
+                    }if (path.extname(filePath) === ".css" ) {
+                    	return;
+
                     }
                     else if (path.extname(filePath) === ".scss" || path.extname(filePath) === ".sass" || (path.extname(filePath) === ".png" && filePath.search("_tosprite") !== -1)) {
                         console.log("SASS/COMPASS RECOMPILE detected".magenta, filePath);
