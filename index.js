@@ -330,7 +330,7 @@ LiveServer.start = function(options) {
 
 
               } );
-              }
+              });
 
               
 
