@@ -360,7 +360,7 @@ LiveServer.start = function(options) {
                     	if (filePath.search(/-\S\S\S\S\S\S\S\S\S\S\S\.png/) !== -1) {
 							ws.send('reload');
 	                        if (LiveServer.logLevel >= 1){
-	                        	console.log("File change detected".cyan, filePath);
+	                        	console.log("File change detected".cyan,eventName, filePath);
 	                        }
                     	}
 
