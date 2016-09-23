@@ -344,7 +344,7 @@ LiveServer.start = function(options) {
                                 console.log(stdout);
                                 console.log(stderr);
 
-
+                                ws.send('reload');
 
                             });
                         });
