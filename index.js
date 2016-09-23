@@ -324,12 +324,10 @@ LiveServer.start = function(options) {
             },
             change: function(eventName, filePath /*, fileCurrentStat, filePreviousStat*/ ) {
                 clients.forEach(function(ws) {
-                    if (!ws) return;
-                    if (path.extname(filePath) === ".css") {
-                        ws.send('refreshcss');
-                        if (LiveServer.logLevel >= 1)
-                            console.log("CSS change detected".magenta, filePath);
-                    } else if (path.extname(filePath) === ".scss" || path.extname(filePath) === ".sass" || (path.extname(filePath) === ".png" && filePath.search("_tosprite") !== -1)) {
+                    if (!ws) {
+                    	return;
+                    }
+                    else if (path.extname(filePath) === ".scss" || path.extname(filePath) === ".sass" || (path.extname(filePath) === ".png" && filePath.search("_tosprite") !== -1)) {
                         console.log("SASS/COMPASS RECOMPILE detected".magenta, filePath);
 
 
@@ -364,7 +362,7 @@ LiveServer.start = function(options) {
 	                        }
                     	}*/
                     	// only update on create or write
-                    	if (eventName !== 'delete' && eventName!=='remove'&& eventName!=='unchanged') {
+                    	if (eventName !== 'delete' && eventName!=='remove'&& eventName!=='unchanged' && filePath.search(/-\S\S\S\S\S\S\S\S\S\S\S\.png/) !== -1 ) {
 							ws.send('reload');
 	                        if (LiveServer.logLevel >= 1){
 	                        	console.log("File change detected".cyan,eventName, filePath);
