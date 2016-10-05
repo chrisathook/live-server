@@ -28,7 +28,7 @@ function escape(html) {
 }
 // Based on connect.static(), but streamlined and with added code injecter
 function staticServer(root, spa) {
-  console.log("!!! live-server-hook v0.8.1");
+  console.log("!!! live-server-hook v0.9.0");
   var isFile = false;
   try { // For supporting mounting files instead of just directories
     isFile = fs.statSync(root).isFile();
@@ -308,7 +308,7 @@ LiveServer.start = function (options) {
             return;
           }
 
-          console.log("File change detected".cyan, eventName, filePath);
+          //console.log("File change detected".cyan, eventName, filePath);
           if (path.extname(filePath) === ".css") {
             return;
           }else if (path.extname(filePath) === ".scss" || path.extname(filePath) === ".sass" || (path.extname(filePath) === ".png" && filePath.search("_tosprite") !== -1)) {
