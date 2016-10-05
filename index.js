@@ -28,7 +28,7 @@ function escape(html) {
 }
 // Based on connect.static(), but streamlined and with added code injecter
 function staticServer(root, spa) {
-  console.log("!!! live-server-hook v0.6");
+  console.log("!!! live-server-hook v0.7");
   var isFile = false;
   try { // For supporting mounting files instead of just directories
     isFile = fs.statSync(root).isFile();
@@ -311,7 +311,11 @@ LiveServer.start = function (options) {
             return;
           }
           else if (path.extname(filePath) === ".scss" || path.extname(filePath) === ".sass" || (path.extname(filePath) === ".png" && filePath.search("_tosprite") !== -1)) {
-            console.log("SASS/COMPASS RECOMPILE detected".magenta, filePath);
+            console.log("SASS/COMPASS RECOMPILE detected".magenta,eventName, filePath);
+
+
+
+
             exec('compass clean', function (error, stdout, stderr) {
               exec('compass compile', function (error, stdout, stderr) {
                 console.log(error);
