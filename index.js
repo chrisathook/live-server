@@ -310,6 +310,9 @@ LiveServer.start = function (options) {
           if (path.extname(filePath) === ".css") {
             return;
           }
+
+          console.log("File change detected".cyan, eventName, filePath);
+
           else if (path.extname(filePath) === ".scss" || path.extname(filePath) === ".sass" || (path.extname(filePath) === ".png" && filePath.search("_tosprite") !== -1)) {
 
             if (eventName === 'delete' || eventName === 'remove') {
